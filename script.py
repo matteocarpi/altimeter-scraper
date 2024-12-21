@@ -57,10 +57,13 @@ new_listings = [listing for listing in current_items if listing["url"] not in pr
 def create_hyperlink(url, label):
     return f"\033]8;;{url}\033\\{label}\033]8;;\033\\"
 
-# Print the title
-print("\n    Here's what's new:\n")
+if len(new_listings) > 0:
+    # Print the title
+    print("\n    Here's what's new:\n")
 
-# Print each item with a clickable Markdown link
-for listing in new_listings:
-    # print(f"{listing['title']}: {listing['url']}\n")
-    print(f"     - {create_hyperlink(listing['url'], listing['title'])}\n")
+    # Print each item with a clickable Markdown link
+    for listing in new_listings:
+        # print(f"{listing['title']}: {listing['url']}\n")
+        print(f"     - {create_hyperlink(listing['url'], listing['title'])}\n")
+else:
+    print('\n   No news, good news...\n')
